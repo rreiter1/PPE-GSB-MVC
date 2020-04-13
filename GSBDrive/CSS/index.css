@@ -1,0 +1,123 @@
+body
+{
+	background-color: #F2F2F2;
+	background-image: url("../img/Background.png");	
+	background-repeat: no-repeat; 
+	background-position: center;
+	background-attachment: fixed;
+
+}
+
+a
+{
+    color : white;
+}
+
+a:hover
+{
+    color : #2CCA00;
+}
+
+#categorie
+{
+	background-color: rgba(200,200,200,0.7);
+	margin-left: 32.2%;
+	margin-right: 32.2%;
+}
+
+#haut
+{
+	background-color: rgba(62,124,30);
+	color:white;
+	padding:5px;
+}
+
+#hautplus
+{
+	background-color: rgba(62,124,30,0.60);
+	color:white;
+	padding: 5px;
+}
+
+#hautCategorie
+{
+	background-color: rgba(82,150,15,0.7);
+	font-size: 18px;
+
+}
+
+#categorie2
+{
+	margin-right: 5%;
+}
+
+/** CSS Inscription **/
+
+
+
+/** CSS Panier **/
+
+#panier
+{
+	background-color: rgba(200,200,200,0.7);
+	margin-left: 41%;
+	margin-right: 41%;
+	margin-top: 1%;
+	margin-bottom: : -4.5%;
+	/*padding: 0.2% 0.3% 0.2% 0.3%;*/
+	border-color: #52960f;
+    border-style:solid;
+    border-width: 1px;
+}
+
+#bouton
+{
+	margin-top: 3%;
+	margin-left:  20%;
+	margin-right: 20.2%;
+}
+
+/** CSS profil **/
+
+#profil
+{
+	margin-top: 1%;
+	background-color: rgba(200,200,200,0.7);
+	margin-left: 34.2%;
+	margin-right: 34.2%;
+	border-color: #52960f;
+    border-style:solid;
+    border-width: 1px;
+} 
+
+.input
+{
+	width: 300px;
+	text-align:center;
+}
+
+#imap
+{
+	width: 100%; /* important! if you need full width display */
+	height: 400px;
+	margin: 0;
+	border-radius: 5px;
+	overflow:hidden;
+}
+
+#paddingTD
+{
+	padding: 2%;
+}
+
+/*button
+{
+	background:    #ffffff;
+	border:        1px solid #52960f;
+	border-radius: 5px;
+	padding:       8px 20px;
+	color:         #52960f;
+	display:       inline-block;
+	font:          normal bold 16px/1 "Open Sans", sans-serif;
+	text-align:    center;
+}*/
