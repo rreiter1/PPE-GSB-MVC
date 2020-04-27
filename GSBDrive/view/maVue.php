@@ -212,15 +212,59 @@ class maVue {
 	        	<center><h4> Choix officine </h3></center>
 	        </div>
         <form method=POST action='index.php?action=ValiderCommande'>";
-        echo "<center><br/><select name='selectionOfficine'>";
+		echo "<center><br/><select name='selectionOfficine'>";
+		$i =0;
         foreach ($donner as $Pharma) 
         {
-            echo "<option value='".$Pharma['id_pharma']."'>".$Pharma['nom_pharma']." à ".$Pharma['ville_pharma']."</option>";
+			echo "<option value='".$Pharma['id_pharma']."'>".$Pharma['nom_pharma']." à ".$Pharma['ville_pharma']."</option>";
         }
-        echo "</select><br/>
-        <div id='imap'></div>
-        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
-        <script src='JS/google.js' type='text/javascript' ></script>";
+		echo "</select><br/>";
+		echo "<style>
+		.coordinates {
+		background: rgba(0, 0, 0, 0.5);
+		color: #fff;
+		position: absolute;
+		bottom: 40px;
+		left: 10px;
+		padding: 5px 10px;
+		margin: 0;
+		font-size: 11px;
+		line-height: 18px;
+		border-radius: 3px;
+		display: none;
+		}
+		</style>";
+		echo "<div id='imap'></div>";
+		echo '<pre id="coordinates" class="coordinates"></pre>';
+		echo "<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>";
+		echo "<script src='JS/google.js' type='text/javascript' ></script>";
+		echo "<script>
+			var long = document.getElementById('long');
+			var lat = document.getElementById('lat');
+			var coordinates = document.getElementById('coordinates');
+			var map = new mapboxgl.Map({
+			container: 'imap',
+			style: 'mapbox://styles/mapbox/streets-v11',
+			center: [0, 48],
+			zoom: 2
+			});
+			
+			var marker = new mapboxgl.Marker({
+			draggable: true
+			})
+			.setLngLat([0, 48])
+			.addTo(map);
+			
+			function onDragEnd() {
+			var lngLat = marker.getLngLat();
+			coordinates.style.display = 'block';
+			coordinates.innerHTML =
+			'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+			}
+			
+			marker.on('dragend', onDragEnd);
+		</script>";
+		
         echo "<button name='ValiderCom'>Valider</button></center><br/><form><div>";
     }
 
