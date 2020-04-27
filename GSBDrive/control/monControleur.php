@@ -24,18 +24,18 @@ class monControleur {
 			{
 				(new User)->ajoutUser($nom,$prenom,$mail,$mdp,$adresse,$ville,$cp,$tel);
 				$_SESSION['connecter'] = true;
-				$_SESSION["message"]['text'] = "Vous etez Maintenant enregistrer<br/>";
+				$_SESSION["message"]['text'] = "Vous etes maintenant enregistré<br/>";
 				$this->accueil();				
 			}
 			else
 			{
-				$_SESSION["message"]['text'] = "Mots de Passe pas identique<br/>";
+				$_SESSION["message"]['text'] = "Les mots de passe ne correspondent pas<br/>";
 				$this->inscription();
 			}
 		}
 		else
 		{
-			$_SESSION["message"]['text'] = "L'adresse Mail est deja utiliser<br/>";
+			$_SESSION["message"]['text'] = "L'adresse mail est deja utilisé<br/>";
 			$this->inscription();
 		}
 		$_SESSION["message"]['text'] ="";
@@ -97,7 +97,7 @@ class monControleur {
 		}
 		else
 		{
-			echo "ERREUR , Vous avez Mal saisie votre mots de passe ou votre EMAIL";
+			echo "ERREUR , Vous avez mal saisie votre mots de passe ou votre email";
 			(new maVue)->affConnection();
 		}
 	}
@@ -157,7 +157,7 @@ class monControleur {
 			else
 			{
 				$_SESSION['modifFait'] = false;
-				echo "Les 2 mots de passe ne sont pas identique";
+				echo "Les mots de passe ne sont pas identique";
 				$objUser = (new User)->getall($_SESSION["id"]);
 				(new maVue)->modiferInfos($objUser);
 				exit();
