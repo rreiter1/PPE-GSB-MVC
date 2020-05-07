@@ -1,4 +1,18 @@
-<meta charset="utf-8">
+<?php
+
+// Encodage d'une page html en utf-8
+header('Content-Type: text/html; charset=utf-8');
+// Encodage d'une page html en iso-8859-1
+//header('Content-Type: text/html; charset=iso-8859-1');
+?><!-- Encodage en utf-8, en XHTML -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- Encodage en utf-8, en HTML 5 -->
+<meta charset="utf-8" />
+  
+<!-- Encodage en iso-8859-1, en XHTML -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- Encodage en iso-8859-1, en HTML 5 -->
+<meta charset="iso-8859-1" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
 <link rel="stylesheet" href="CSS/index.css"/>

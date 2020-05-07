@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 13 avr. 2020 à 07:46
+-- Généré le :  jeu. 07 mai 2020 à 16:05
 -- Version du serveur :  10.3.12-MariaDB
 -- Version de PHP :  7.3.1
 
@@ -31,9 +31,9 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `categorie`;
 CREATE TABLE IF NOT EXISTS `categorie` (
   `id_categorie` int(11) NOT NULL AUTO_INCREMENT,
-  `nom_categorie` varchar(500) NOT NULL,
+  `nom_categorie` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id_categorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `categorie`
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `commande` (
   PRIMARY KEY (`id_command`),
   KEY `command_pharmacie_FK` (`id_pharma`),
   KEY `command_user0_FK` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `commande`
@@ -154,7 +154,8 @@ INSERT INTO `commande` (`id_command`, `date_command`, `id_pharma`, `id_user`) VA
 (85, '2019-12-04', 2, 36),
 (86, '2020-04-12', 2, 36),
 (87, '2020-04-12', 1, 36),
-(88, '2020-04-12', 1, 54);
+(88, '2020-04-12', 1, 54),
+(89, '2020-05-07', 2, 36);
 
 -- --------------------------------------------------------
 
@@ -169,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `contient` (
   `quantite` int(11) NOT NULL,
   PRIMARY KEY (`id_medoc`,`id_command`),
   KEY `relation4_command0_FK` (`id_command`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `contient`
@@ -374,7 +375,9 @@ INSERT INTO `contient` (`id_medoc`, `id_command`, `quantite`) VALUES
 (8, 86, 2),
 (9, 86, 1),
 (9, 88, 1),
+(9, 89, 1),
 (10, 86, 1),
+(10, 89, 1),
 (11, 86, 1),
 (12, 86, 1),
 (14, 86, 1),
@@ -457,12 +460,12 @@ INSERT INTO `contient` (`id_medoc`, `id_command`, `quantite`) VALUES
 DROP TABLE IF EXISTS `medicament`;
 CREATE TABLE IF NOT EXISTS `medicament` (
   `id_medoc` int(11) NOT NULL AUTO_INCREMENT,
-  `nom_medoc` varchar(500) NOT NULL,
-  `description_medoc` varchar(500) NOT NULL,
+  `nom_medoc` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `description_medoc` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `id_categorie` int(11) NOT NULL,
   PRIMARY KEY (`id_medoc`),
   KEY `medicament_categorie_FK` (`id_categorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `medicament`
@@ -495,20 +498,22 @@ INSERT INTO `medicament` (`id_medoc`, `nom_medoc`, `description_medoc`, `id_cate
 DROP TABLE IF EXISTS `pharmacie`;
 CREATE TABLE IF NOT EXISTS `pharmacie` (
   `id_pharma` int(11) NOT NULL AUTO_INCREMENT,
-  `nom_pharma` varchar(500) NOT NULL,
-  `ville_pharma` varchar(500) NOT NULL,
-  `cp_pharma` varchar(6) NOT NULL,
-  `adresse_pharma` varchar(500) NOT NULL,
+  `nom_pharma` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `ville_pharma` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `cp_pharma` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
+  `adresse_pharma` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `lng_pharmacie` float NOT NULL,
+  `lar_pharmacie` float NOT NULL,
   PRIMARY KEY (`id_pharma`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `pharmacie`
 --
 
-INSERT INTO `pharmacie` (`id_pharma`, `nom_pharma`, `ville_pharma`, `cp_pharma`, `adresse_pharma`) VALUES
-(1, 'la pharmacie du bonheur', 'je-sais-pas-land', '000', 'rue du bonheur'),
-(2, 'ne venais pas ', 'adieuland', '666', 'vous approchez de la mort');
+INSERT INTO `pharmacie` (`id_pharma`, `nom_pharma`, `ville_pharma`, `cp_pharma`, `adresse_pharma`, `lng_pharmacie`, `lar_pharmacie`) VALUES
+(1, 'Pharmacie Ultsch', 'Bar-le-duc', '558000', 'Rue Landry-Gillon', 5.15962, 48.7784),
+(2, 'Pharmacie du Boulevard', 'Bar-le-Duc', '55800', 'Boulevard de la Rochelle', 5.16332, 48.7721);
 
 -- --------------------------------------------------------
 
@@ -519,16 +524,16 @@ INSERT INTO `pharmacie` (`id_pharma`, `nom_pharma`, `ville_pharma`, `cp_pharma`,
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
-  `nom_user` varchar(500) NOT NULL,
-  `prenom_user` varchar(500) NOT NULL,
-  `mail_user` varchar(500) NOT NULL,
-  `mdp_user` varchar(500) NOT NULL,
-  `ville_user` varchar(500) NOT NULL,
-  `cp_user` varchar(6) NOT NULL,
-  `adresse_user` varchar(500) NOT NULL,
-  `telephone_user` varchar(21) NOT NULL,
+  `nom_user` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `prenom_user` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `mail_user` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `mdp_user` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `ville_user` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `cp_user` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
+  `adresse_user` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `telephone_user` varchar(21) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `user`

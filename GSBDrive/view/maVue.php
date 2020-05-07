@@ -212,7 +212,7 @@ class maVue {
 	        	<center><h4> Choix officine </h3></center>
 	        </div>
         <form method=POST action='index.php?action=ValiderCommande'>";
-		echo "<center><br/><select name='selectionOfficine'>";
+		echo "<center><br/><select id='idOfficine' name='selectionOfficine'>";
 		$i =0;
         foreach ($donner as $Pharma) 
         {
@@ -236,6 +236,7 @@ class maVue {
 		</style>";
 		echo "<div id='imap'></div>";
 		echo '<pre id="coordinates" class="coordinates"></pre>';
+		echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>';
 		echo "<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>";
 		echo "<script src='JS/google.js' type='text/javascript' ></script>";
 		echo "<script>
@@ -245,15 +246,27 @@ class maVue {
 			var map = new mapboxgl.Map({
 			container: 'imap',
 			style: 'mapbox://styles/mapbox/streets-v11',
-			center: [0, 48],
-			zoom: 2
-			});
-			
+			center: {lng: 5.159623206837068, lat: 48.77842821951461},
+			zoom: 16
+			});";
+			echo "var markers = new Array();";
+		foreach ($donner as $Pharma) 
+        {
+			echo "markers['".$Pharma['id_pharma']."'] = {lng: ".$Pharma["lng_pharmacie"].",lat: ".$Pharma["lar_pharmacie"]."};";
+        }
+		echo"
+
 			var marker = new mapboxgl.Marker({
-			draggable: true
+			draggable: false
 			})
-			.setLngLat([0, 48])
+			.setLngLat({lng: 5.159623206837068, lat: 48.77842821951461})
 			.addTo(map);
+			$(function(){
+			    $('#idOfficine').change(function(){
+			        marker.setLngLat(markers[$(this).val()]);
+			        map.setCenter(markers[$(this).val()]);
+			    });
+			});
 			
 			function onDragEnd() {
 			var lngLat = marker.getLngLat();
